@@ -37,6 +37,13 @@ class AppServiceProvider extends ServiceProvider
         $this->app->when(\Core\Domain\Services\Items\UpdateService::class)
         ->needs(\Core\Domain\Contracts\BaseContract::class)
         ->give(\Core\Domain\Repositories\Eloquent\ItemRepository::class);
+
+
+
+        //Items Destroy
+        $this->app->when(\Core\Domain\Services\Items\DestroyService::class)
+        ->needs(\Core\Domain\Contracts\BaseContract::class)
+        ->give(\Core\Domain\Repositories\Eloquent\ItemRepository::class);
     }
 
     /**

@@ -1,11 +1,11 @@
 <?php
 
-namespace Core\Actions\Users;
+namespace Core\Actions\Items;
 
-use Core\Domain\Services\Users\DestroyService;
+use Core\Domain\Services\Items\DestroyService;
 use Core\Responders\ResourceResponder;
 
-class DestroyUserAction
+class DestroyItemAction
 {
     private $service;
     private $responder;
@@ -19,7 +19,7 @@ class DestroyUserAction
 
     public function __invoke($id)
     {
-        $user = $this->service->execute((int) $id);
-        return $this->responder->withData($user)->respond();
+        $item = $this->service->execute((int) $id);
+        return $this->responder->withData($item)->respond();
     }
 }

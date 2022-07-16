@@ -24,11 +24,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::namespace('Core\Actions\Items')->prefix('v1')->group(
     function () {
-        //Route::get('items', 'GetItemsAction')->name('items.all');
         Route::get('items/bycriteria', 'GetItemsByCriteriaAction')->name('items.bycriteria');
-        //Route::get('categories/{category}', 'GetCategoryAction')->name('categories.show');
         Route::post('items', 'StoreItemAction')->name('items.store');
         Route::post('items/{item}', 'UpdateItemAction')->name('items.update');
-        //Route::delete('categories/{category}', 'DestroyCategoryAction')->name('categories.destroy');
+        Route::delete('items/{item}', 'DestroyItemAction')->name('items.destroy');
     }
 );
