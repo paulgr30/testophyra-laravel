@@ -2,7 +2,7 @@
 
 namespace Core\Domain\Validators;
 
-final class UserValidator
+final class ItemValidator
 {
     private static $validator;
 
@@ -12,32 +12,34 @@ final class UserValidator
 
 
         $attributes = [
-            'name'      => 'Nombre',
-            'password'  => 'Contraseña',
-            'roles'     => 'Rol',
+            'title'      => 'Titulo',
+            'descripction'  => 'Descripcion',
+            'price'     => 'Precio',
         ];
 
         $rules = [
-            'name' => [
+            'title' => [
                 'required',
-                'unique:users,name,' . $id . ',id',
+                'unique:items,title,' . $id . ',id',
             ],
-            'email' => [
+            'description' => [
                 'required',
-                'email',
-                'unique:users,email,' . $id . ',id',
             ],
-            'is_active'   => ['required', 'in:0,1'],
-            'roles' => ['required'],
+            'price' => [
+                'required',
+                'numeric',
+            ],
         ];
 
-        if ($id == 0 or !empty($data['password'])) {
+        if ($data['image'] != false) {
             $rules = array_merge($rules, [
-                'password' => [
-                    'required'
-                ]
+                'image' => [
+                    'image'
+                ],
             ]);
         }
+
+
 
         self::$validator = validator($data, $rules, [], $attributes);
         return self::$validator->fails() ? false : true;

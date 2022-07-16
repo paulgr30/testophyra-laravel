@@ -4,6 +4,7 @@ namespace Core\Domain\Repositories\Eloquent;
 
 use Core\Domain\Models\Item;
 use Core\Domain\Contracts\BaseContract;
+use Illuminate\Support\Facades\Storage;
 
 class ItemRepository implements BaseContract
 {
@@ -34,11 +35,15 @@ class ItemRepository implements BaseContract
 
     public function save($data)
     {
+        // Almacenamos la imagen en el storage y obtenemos su ruta
+        $path = Storage::disk('public')->put('images', $data['image']);
         // Rellenamos el model
         $this->model->fill($data);
-        // Guardamos el usuario
-        $this->model->saveOrFail();
-        // Retornamos el usuario creado
+        $this->model->image = $path;
+        // Guardamos el item
+        $this->model->saveOrFail();       
+        
+        // Retornamos el item creado
         return $this->model;
     }
 

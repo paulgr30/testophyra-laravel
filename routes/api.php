@@ -26,9 +26,9 @@ Route::namespace('Core\Actions\Items')->prefix('v1')->group(
     function () {
         Route::get('items', 'GetItemsAction')->name('items.all');
         Route::get('items/bycriteria', 'GetItemsByCriteriaAction')->name('items.bycriteria');
-        /*Route::get('categories/{category}', 'GetCategoryAction')->name('categories.show');
-        Route::post('categories', 'StoreCategoryAction')->name('categories.store');
-        Route::put('categories/{category}', 'UpdateCategoryAction')->name('categories.update');
+        //Route::get('categories/{category}', 'GetCategoryAction')->name('categories.show');
+        Route::post('items', 'StoreItemAction')->name('items.store');
+        /*Route::put('categories/{category}', 'UpdateCategoryAction')->name('categories.update');
         Route::delete('categories/{category}', 'DestroyCategoryAction')->name('categories.destroy');*/
     }
 );

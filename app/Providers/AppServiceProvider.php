@@ -23,6 +23,13 @@ class AppServiceProvider extends ServiceProvider
         $this->app->when(\Core\Domain\Services\Items\GetByCriteriaService::class)
             ->needs(\Core\Domain\Contracts\BaseContract::class)
             ->give(\Core\Domain\Repositories\Eloquent\ItemRepository::class);
+
+
+
+        //Items Store
+        $this->app->when(\Core\Domain\Services\Items\StoreService::class)
+        ->needs(\Core\Domain\Contracts\BaseContract::class)
+        ->give(\Core\Domain\Repositories\Eloquent\ItemRepository::class);
     }
 
     /**

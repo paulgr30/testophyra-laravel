@@ -14,9 +14,6 @@ class ValidationPayload extends Payload
     // Sobre escribimos el metodo getData de Payload
     public function getData()
     {
-        if(!$this->data) {
-            $this->data = ['login' => ['Las credenciales de acceso no son validas']];
-        }
         return [
             'errors' => $this->data
         ];

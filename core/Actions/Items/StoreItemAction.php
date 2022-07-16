@@ -1,12 +1,12 @@
 <?php
 
-namespace Core\Actions\Users;
+namespace Core\Actions\Items;
 
-use Core\Domain\Services\Users\StoreService;
+use Core\Domain\Services\Items\StoreService;
 use Core\Responders\{ExceptionResponder, ResourceResponder};
 use Illuminate\Http\Request;
 
-class StoreUserAction
+class StoreItemAction
 {
     private $service;
     private $resourceResponder;
@@ -23,10 +23,10 @@ class StoreUserAction
     public function __invoke(Request $request)
     {
         try {
-            $user = $this->service->execute($request->collect());
+            $item = $this->service->execute($request->collect(), $request->file('image'));
         } catch (\Exception $e) {
             return $this->exceptionResponder->respond($e);
         }
-        return $this->resourceResponder->withData($user)->respond();
+        return $this->resourceResponder->withData($item)->respond();
     }
 }
