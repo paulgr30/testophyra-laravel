@@ -15,6 +15,7 @@ final class ItemValidator
             'title'      => 'Titulo',
             'descripction'  => 'Descripcion',
             'price'     => 'Precio',
+            'image'     => 'Imagen',
         ];
 
         $rules = [
@@ -28,6 +29,9 @@ final class ItemValidator
             'price' => [
                 'required',
                 'numeric',
+            ],
+            'image' => [
+                'required',
             ],
         ];
 

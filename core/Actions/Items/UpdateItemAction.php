@@ -1,12 +1,12 @@
 <?php
 
-namespace Core\Actions\Users;
+namespace Core\Actions\Items;
 
-use Core\Domain\Services\Users\UpdateService;
+use Core\Domain\Services\Items\UpdateService;
 use Core\Responders\{ExceptionResponder, ResourceResponder};
 use Illuminate\Http\Request;
 
-final class UpdateUserAction
+final class UpdateItemAction
 {
     private $service;
     private $resourceResponder;
@@ -22,11 +22,11 @@ final class UpdateUserAction
 
     public function __invoke($id, Request $request)
     {
-        try {
-            $user = $this->service->execute((int) $id, $request->collect());
-        } catch (\Exception $e) {
+        //try {
+            $item = $this->service->execute((int) $id, $request->collect(), $request->file('image'));
+        /*} catch (\Exception $e) {
             return $this->exceptionResponder->respond($e);
-        }
-        return $this->resourceResponder->withData($user)->respond();
+        }*/
+        return $this->resourceResponder->withData($item)->respond();
     }
 }

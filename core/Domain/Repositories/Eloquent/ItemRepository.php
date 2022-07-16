@@ -53,6 +53,18 @@ class ItemRepository implements BaseContract
         $item = $this->get($id);
         // Verificamos si existe el item
         if ($item) {
+            // Verificamos si hay un archivo(imagen)
+            if (!empty($data['image'])) {
+                // Almacenamos la imagen en el storage y obtenemos su ruta
+                $path = Storage::disk('public')->put('images', $data['image']);
+                // Verificamos si el item ya tiene una imagen
+                if ($item->image) {
+                    //Eliminamos la imagen actual
+                    Storage::delete($item->image);
+                    // Actualizamos la url de la imagen
+                    $item->image = $path;
+                }
+            }
             // Actualizamos el item
             $item->update($data);
         }
